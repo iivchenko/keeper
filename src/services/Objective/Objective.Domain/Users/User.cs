@@ -4,7 +4,7 @@ using Objective.Domain.Common;
 
 namespace Objective.Domain.Users
 {
-    public sealed class User : Entity<Guid>
+    public sealed class User : Entity<Guid>, IAggregateRoot
     {
         public User(Guid id, string name)
             : base(id)

@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-using Objective.Domain.Comments;
 using Objective.Domain.Common;
 using Objective.Domain.Tags;
 using Objective.Domain.Users;
 
 namespace Objective.Domain.Objectives
 {
-    public sealed class Objective : Entity<Guid>
+    public sealed class Objective : Entity<Guid>, IAggregateRoot
     {
         private readonly IList<Tag> _tags;
         private readonly IList<Comment> _comments;
@@ -42,7 +41,7 @@ namespace Objective.Domain.Objectives
             _comments = new List<Comment>();
         }
 
-		public string Name { get; private set; }
+        public string Name { get; private set; }
 
 		public int Status { get; private set; }
 

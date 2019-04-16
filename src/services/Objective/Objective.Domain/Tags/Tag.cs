@@ -4,7 +4,7 @@ using Objective.Domain.Common;
 
 namespace Objective.Domain.Tags
 {
-    public sealed class Tag : Entity<Guid>
+    public sealed class Tag : Entity<Guid>, IAggregateRoot
     {
         public Tag(Guid id, string name, string description, TagColor color)
             : base(id)

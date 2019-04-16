@@ -6,7 +6,7 @@ using Objective.Domain.Objectives;
 
 namespace Objective.Domain.Milestones
 {
-    public sealed class Milestone : Entity<Guid>
+    public sealed class Milestone : Entity<Guid>, IAggregateRoot
     {
         private readonly IList<Objectives.Objective> _objectives;
 

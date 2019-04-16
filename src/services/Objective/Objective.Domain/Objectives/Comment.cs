@@ -2,7 +2,7 @@ using System;
 
 using Objective.Domain.Common;
 
-namespace Objective.Domain.Comments
+namespace Objective.Domain.Objectives
 {
     public sealed class Comment : Entity<Guid>
     {
