@@ -20,11 +20,6 @@ namespace Objective.Domain.Objectives
                 throw new ArgumentException("The ID cannot be the type's default value.", nameof(objectiveId));
             }
 
-            if (objectiveId == Guid.Empty)
-            {
-                throw new ArgumentException("The ID cannot be the type's default value.", nameof(objectiveId));
-            }
-
             if (createdByUserId == Guid.Empty)
             {
                 throw new ArgumentException("The ID cannot be the type's default value.", nameof(createdByUserId));
