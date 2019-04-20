@@ -1,8 +1,8 @@
 using System;
 
-using Objective.Domain.Common;
+using Objective.Core.Domain.Common;
 
-namespace Objective.Domain.Milestones
+namespace Objective.Core.Domain.Milestones
 {
     public sealed class MilestoneStatus : Enumeration
     {

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Objective.Domain.Common;
+using Objective.Core.Domain.Common;
 
-namespace Objective.Domain.Tags
+namespace Objective.Core.Domain.Tags
 {
     public sealed class TagColor : ValueObject
     {

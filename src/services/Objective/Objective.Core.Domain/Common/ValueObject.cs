@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Objective.Domain.Common
+namespace Objective.Core.Domain.Common
 {
     public abstract class ValueObject
     {

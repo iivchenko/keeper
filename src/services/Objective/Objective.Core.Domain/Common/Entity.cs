@@ -1,6 +1,6 @@
 using System;
 
-namespace Objective.Domain.Common
+namespace Objective.Core.Domain.Common
 {
     public abstract class Entity<TId> : IEquatable<Entity<TId>>
     {

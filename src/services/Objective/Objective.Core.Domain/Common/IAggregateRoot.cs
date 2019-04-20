@@ -1,4 +1,4 @@
-namespace Objective.Domain.Common
+namespace Objective.Core.Domain.Common
 {
     public interface IAggregateRoot
     {        

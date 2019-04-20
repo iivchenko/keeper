@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-using Objective.Domain.Common;
-using Objective.Domain.Objectives;
+using Objective.Core.Domain.Common;
+using Objective.Core.Domain.Objectives;
 
-namespace Objective.Domain.Milestones
+namespace Objective.Core.Domain.Milestones
 {
     public sealed class Milestone : Entity<Guid>, IAggregateRoot
     {

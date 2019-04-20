@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Objective.Domain.Common
+namespace Objective.Core.Domain.Common
 {
     public abstract class Enumeration : IComparable
     {       

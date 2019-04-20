@@ -1,8 +1,8 @@
 using System;
 
-using Objective.Domain.Common;
+using Objective.Core.Domain.Common;
 
-namespace Objective.Domain.Users
+namespace Objective.Core.Domain.Users
 {
     public sealed class User : Entity<Guid>, IAggregateRoot
     {

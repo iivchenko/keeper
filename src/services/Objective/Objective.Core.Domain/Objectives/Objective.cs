@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-using Objective.Domain.Common;
-using Objective.Domain.Tags;
-using Objective.Domain.Users;
+using Objective.Core.Domain.Common;
+using Objective.Core.Domain.Tags;
+using Objective.Core.Domain.Users;
 
-namespace Objective.Domain.Objectives
+namespace Objective.Core.Domain.Objectives
 {
     public sealed class Objective : Entity<Guid>, IAggregateRoot
     {

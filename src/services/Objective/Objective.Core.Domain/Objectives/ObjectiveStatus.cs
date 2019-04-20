@@ -1,8 +1,8 @@
 using System;
 
-using Objective.Domain.Common;
+using Objective.Core.Domain.Common;
 
-namespace Objective.Domain.Objectives
+namespace Objective.Core.Domain.Objectives
 {
     public sealed class ObjectiveStatus : Enumeration
     {
