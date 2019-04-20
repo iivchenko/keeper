@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Objective.Application
+namespace Objective.Core.Application.Commands
 {
     public class Class1
     {
