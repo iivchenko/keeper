@@ -1,12 +1,20 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using FluentValidation.AspNetCore;
+using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-using Objective.Core.Application.Commands.Common;
-using Objective.Core.Application.Commands.Objectives.AddObjective;
+using Objective.Api.Common;
+using Objective.Core.Domain.Common;
+using Objective.Core.Domain.Objectives;
+using Objective.Infrastructure.Persistence;
+using Objective.Infrastructure.Persistence.Objectives;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.Reflection;
 
 namespace Objective.Api
 {
@@ -21,11 +29,31 @@ namespace Objective.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Common
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // Objectives
+            services.AddScoped<IObjectiveFactory, ObjectiveFactory>();
+            services.AddScoped<IObjectiveRepository, ObjectiveRepository>();
+
             services
-                .AddScoped<ICommandHandler<AddObjectiveCommand>, AddObjectiveCommandHandler>();
+               .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services
+                .AddMediatR(Assembly.Load("Objective.Core.Application.Commands"));
+
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+            services
+               .AddDbContext<ObjectiveContext>(
+                   options =>
+                   {
+                       options.UseSqlServer(Configuration["ConnectionString"]);
+                   });
 
             services
                 .AddMvc()
+                .AddFluentValidation(x => x.RegisterValidatorsFromAssemblies(new[] { Assembly.Load("Objective.Core.Application.Commands") }))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services
@@ -44,17 +72,11 @@ namespace Objective.Api
                });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
             }
 
             app.UseMvc();

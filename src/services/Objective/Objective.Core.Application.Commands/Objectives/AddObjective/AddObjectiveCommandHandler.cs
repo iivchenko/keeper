@@ -1,37 +1,37 @@
+using MediatR;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
-using Objective.Core.Application.Commands.Common;
 using Objective.Core.Domain.Objectives;
-
-using TheObjective = Objective.Core.Domain.Objectives.Objective;
+using Objective.Core.Domain.Common;
 
 namespace Objective.Core.Application.Commands.Objectives.AddObjective
 {
-    public sealed class AddObjectiveCommandHandler : ICommandHandler<AddObjectiveCommand>
+    public sealed class AddObjectiveCommandHandler : IRequestHandler<AddObjectiveCommand, Guid>
     {
-        private readonly IObjectiveRepository _objeciveRepository;
+        private readonly IObjectiveFactory _objectiveFactory;
+        private readonly IObjectiveRepository _objectiveRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AddObjectiveCommandHandler(IObjectiveRepository objeciveRepository)
+        public AddObjectiveCommandHandler(
+            IObjectiveFactory objectiveFactory,
+            IObjectiveRepository objectiveRepository,
+            IUnitOfWork unitOfWork)
         {
-            if (objeciveRepository == null)
-            {
-                throw new ArgumentNullException(nameof(objeciveRepository));
-            }
-
-            _objeciveRepository = objeciveRepository;
+            _objectiveFactory = objectiveFactory ?? throw new ArgumentNullException(nameof(objectiveFactory));
+            _objectiveRepository = objectiveRepository ?? throw new ArgumentNullException(nameof(objectiveRepository));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public void Handle(AddObjectiveCommand command)
+        public async Task<Guid> Handle(AddObjectiveCommand request, CancellationToken cancellationToken)
         {
-            var objective = new TheObjective
-            (
-                Guid.NewGuid(),
-                command.Name, 
-                command.UserId,
-                command.MilestoneId
-            );
+            var objective = _objectiveFactory.Create(request.Name, request.Description);
 
-            _objeciveRepository.Create(objective);
+            await _objectiveRepository.Create(objective);
+            await _unitOfWork.Commit();
+
+            return objective.Reference;
         }
     }
 }

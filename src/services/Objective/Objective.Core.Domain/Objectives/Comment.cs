@@ -4,7 +4,7 @@ using Objective.Core.Domain.Common;
 
 namespace Objective.Core.Domain.Objectives
 {
-    public sealed class Comment : Entity<Guid>
+    public sealed class Comment : Entity
     {
         public Comment(Guid id, string text, Guid objectiveId, Guid createdByUserId)
             : base(id)

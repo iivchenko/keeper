@@ -1,11 +1,11 @@
 using System;
-
+using System.Threading.Tasks;
 using Objective.Core.Domain.Common;
 
 namespace Objective.Core.Domain.Objectives
 {
-    public interface IObjectiveRepository : IRepository<Objective, Guid>
+    public interface IObjectiveRepository : IRepository<Objective>
     {
-        void Create(Objective Objective);
+        Task Create(Objective objective);
     }
 }

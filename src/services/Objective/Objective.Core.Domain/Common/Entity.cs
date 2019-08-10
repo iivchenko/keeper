@@ -2,24 +2,26 @@ using System;
 
 namespace Objective.Core.Domain.Common
 {
-    public abstract class Entity<TId> : IEquatable<Entity<TId>>
+    public abstract class Entity : IEquatable<Entity>
     {
-        protected Entity(TId id)
+        protected Entity(Guid reference)
         {
-            if (object.Equals(id, default(TId)))
+            if (reference == Guid.Empty)
             {
-                throw new ArgumentException("The ID cannot be the type's default value.", nameof(id));
+                throw new ArgumentException("The 'reference' cannot be the empty!", nameof(reference));
             }
 
-            Id = id;
+            Reference = reference;
         }
 
-        public TId Id { get; protected set; }     
+        public ulong Id { get; protected set; }
+
+        public Guid Reference { get; protected set; }
 
         public override bool Equals(object other)
         {
             return 
-                other is Entity<TId> entity 
+                other is Entity entity
                     ? Equals(entity)
                     : base.Equals(other);
         }
@@ -29,7 +31,7 @@ namespace Objective.Core.Domain.Common
             return this.Id.GetHashCode();
         }
 
-        public bool Equals(Entity<TId> other)
+        public bool Equals(Entity other)
         {
             return 
                 other == null 

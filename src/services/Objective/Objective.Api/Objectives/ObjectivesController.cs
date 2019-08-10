@@ -1,6 +1,10 @@
+using MediatR;
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Objective.Core.Application.Commands.Objectives.AddObjective;
+using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Objective.Api.Objectives
 {
@@ -8,6 +12,17 @@ namespace Objective.Api.Objectives
     [ApiController]
     public class ObjectivesController : ControllerBase
     {
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
+
+        public ObjectivesController(
+            IMediator mediator,
+            IMapper mapper)
+        {
+            _mediator = mediator;
+            _mapper = mapper;
+        }
+
         [HttpGet]
         public IEnumerable<ObjectiveModel> GetObjectives()
         {
@@ -21,9 +36,9 @@ namespace Objective.Api.Objectives
         }
 
         [HttpPost]
-        public IEnumerable<ObjectiveModel> AddObjective(ObjectiveAddModel objective)
+        public Task<Guid> AddObjective(ObjectiveAddModel objective)
         {
-            throw new NotImplementedException();
+            return _mediator.Send(_mapper.Map<AddObjectiveCommand>(objective));
         }
     }
 }

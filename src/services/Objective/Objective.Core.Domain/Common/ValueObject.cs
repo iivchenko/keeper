@@ -11,6 +11,7 @@ namespace Objective.Core.Domain.Common
             {
                 return false;
             }
+
             return ReferenceEquals(left, null) || left.Equals(right);
         }
 
