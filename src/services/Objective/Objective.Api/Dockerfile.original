@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim AS base
+WORKDIR /app
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
+WORKDIR /src
+COPY ["src/services/Objective/Objective.Api/Objective.Api.csproj", "src/services/Objective/Objective.Api/"]
+COPY ["src/services/Objective/Objective.Core.Application.Commands/Objective.Core.Application.Commands.csproj", "src/services/Objective/Objective.Core.Application.Commands/"]
+COPY ["src/services/Objective/Objective.Core.Domain/Objective.Core.Domain.csproj", "src/services/Objective/Objective.Core.Domain/"]
+RUN dotnet restore "src/services/Objective/Objective.Api/Objective.Api.csproj"
+COPY . .
+WORKDIR "/src/src/services/Objective/Objective.Api"
+RUN dotnet build "Objective.Api.csproj" -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish "Objective.Api.csproj" -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "Objective.Api.dll"]

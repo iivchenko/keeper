@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  objective.api:
+    image: ${DOCKER_REGISTRY-}objectiveapi
+    build:
+      context: .
+      dockerfile: src/services/Objective/Objective.Api/Dockerfile
