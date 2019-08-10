@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-using Objective.Api.Commands.Common;
+using Objective.Api.Common;
 using Objective.Core.Application.Commands.Objectives.AddObjective;
 
-namespace Objective.Api.Commands.Controllers
+namespace Objective.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

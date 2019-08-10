@@ -1,6 +1,6 @@
 using System;
 
-namespace Objective.Api.Commands.Controllers
+namespace Objective.Api.Controllers
 {
     public sealed class AddObjectiveDto
     {

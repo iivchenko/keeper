@@ -2,7 +2,7 @@ using System;
 
 using  Objective.Core.Application.Commands.Common;
 
-namespace Objective.Api.Commands.Common
+namespace Objective.Api.Common
 {
     public sealed class CommandDispatcher : ICommandDispatcher
     {
