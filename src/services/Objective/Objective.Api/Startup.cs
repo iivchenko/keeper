@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Objective.Core.Application.Commands.Common;
 using Objective.Core.Application.Commands.Objectives.AddObjective;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Objective.Api
 {
@@ -21,8 +22,27 @@ namespace Objective.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ICommandHandler<AddObjectiveCommand>, AddObjectiveCommandHandler>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services
+                .AddScoped<ICommandHandler<AddObjectiveCommand>, AddObjectiveCommandHandler>();
+
+            services
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services
+               .AddSwaggerGen(c =>
+               {
+                   c.SwaggerDoc("v1", new Info
+                   {
+                       Version = "v1",
+                       Title = "Objectives Api",
+                       Contact = new Contact
+                       {
+                           Name = "Objectives Microservice",
+                           Email = "iivchenko@live.com",
+                       }
+                   });
+               });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,8 +58,14 @@ namespace Objective.Api
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSwagger();
+            app
+                .UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Objectives Api V1");
+                });
         }
     }
 }

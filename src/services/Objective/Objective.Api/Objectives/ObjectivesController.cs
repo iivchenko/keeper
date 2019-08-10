@@ -9,18 +9,12 @@ namespace Objective.Api.Objectives
     public class ObjectivesController : ControllerBase
     {
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet]
         public IEnumerable<ObjectiveModel> GetObjectives()
         {
             throw new NotImplementedException();
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IEnumerable<ObjectiveModel> GetObjective(Guid id)
         {
             throw new NotImplementedException();
