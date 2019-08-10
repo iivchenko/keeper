@@ -1,8 +1,20 @@
 version: '3.4'
 
 services:
+
+  data.sql:
+    image: microsoft/mssql-server-linux:2017-latest
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
+
   objective.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionString=Server=data.sql;Database=objectives;User Id=sa;Password=Pass@word
     ports:
       - "80"
+    depends_on:
+      - data.sql
