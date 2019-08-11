@@ -4,19 +4,17 @@ namespace Objective.Core.Domain.Common
 {
     public abstract class Entity : IEquatable<Entity>
     {
-        protected Entity(Guid reference)
+        protected Entity(Guid id)
         {
-            if (reference == Guid.Empty)
+            if (id == Guid.Empty)
             {
-                throw new ArgumentException("The 'reference' cannot be the empty!", nameof(reference));
+                throw new ArgumentException("The 'reference' cannot be the empty!", nameof(id));
             }
 
-            Reference = reference;
+            Id = id;
         }
 
-        public ulong Id { get; protected set; }
-
-        public Guid Reference { get; protected set; }
+        public Guid Id { get; protected set; }
 
         public override bool Equals(object other)
         {

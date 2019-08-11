@@ -31,7 +31,7 @@ namespace Objective.Core.Application.Commands.Objectives.AddObjective
             await _objectiveRepository.Create(objective);
             await _unitOfWork.Commit();
 
-            return objective.Reference;
+            return objective.Id;
         }
     }
 }

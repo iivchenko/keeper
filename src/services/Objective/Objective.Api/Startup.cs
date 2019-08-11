@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Objective.Api.Common;
+using Objective.Core.Application.Queries.Sql.Common;
 using Objective.Core.Domain.Common;
 using Objective.Core.Domain.Objectives;
 using Objective.Infrastructure.Persistence;
@@ -31,6 +32,7 @@ namespace Objective.Api
         {
             // Common
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IConnectionFactory>(new ConnectionFactory(Configuration["ConnectionString"]));
 
             // Objectives
             services.AddScoped<IObjectiveFactory, ObjectiveFactory>();
@@ -40,7 +42,9 @@ namespace Objective.Api
                .AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services
-                .AddMediatR(Assembly.Load("Objective.Core.Application.Commands"));
+                .AddMediatR(
+                    Assembly.Load("Objective.Core.Application.Commands"),
+                    Assembly.Load("Objective.Core.Application.Queries.Sql"));
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
@@ -53,7 +57,7 @@ namespace Objective.Api
 
             services
                 .AddMvc()
-                .AddFluentValidation(x => x.RegisterValidatorsFromAssemblies(new[] { Assembly.Load("Objective.Core.Application.Commands") }))
+                .AddFluentValidation(x => x.RegisterValidatorsFromAssemblies(new[] { Assembly.Load("Objective.Core.Application.Commands"), Assembly.Load("Objective.Core.Application.Queries") }))
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services

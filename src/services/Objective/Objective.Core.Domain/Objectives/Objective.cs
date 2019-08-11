@@ -20,6 +20,11 @@ namespace Objective.Core.Domain.Objectives
             CreatedDate = DateTime.UtcNow;
         }
 
+        private Objective()
+            : base(Guid.NewGuid())
+        {
+        }
+
         public string Name { get; private set; }
 
         public string Description { get; private set; }

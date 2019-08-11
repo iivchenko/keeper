@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Objective.Core.Application.Commands.Objectives.AddObjective;
 using System.Threading.Tasks;
 using AutoMapper;
+using Objective.Core.Application.Queries.Objectives.GetObjective;
 
 namespace Objective.Api.Objectives
 {
@@ -30,15 +31,17 @@ namespace Objective.Api.Objectives
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<ObjectiveModel> GetObjective(Guid id)
+        public async Task<ObjectiveModel> GetObjective(Guid id)
         {
-            throw new NotImplementedException();
+            var objective = await _mediator.Send(new GetObjectiveQuery { Id = id });
+
+            return _mapper.Map<GetObjectiveQueryResult, ObjectiveModel>(objective);
         }
 
         [HttpPost]
         public Task<Guid> AddObjective(ObjectiveAddModel objective)
         {
-            return _mediator.Send(_mapper.Map<AddObjectiveCommand>(objective));
+            return _mediator.Send(_mapper.Map<ObjectiveAddModel, AddObjectiveCommand>(objective));
         }
     }
 }

@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Objective.Core.Application.Commands\Objective.Core.Application.Commands.csproj" />
+    <ProjectReference Include="..\Objective.Core.Application.Queries.Sql\Objective.Core.Application.Queries.Sql.csproj" />
+    <ProjectReference Include="..\Objective.Core.Application.Queries\Objective.Core.Application.Queries.csproj" />
     <ProjectReference Include="..\Objective.Infrastructure.Persistence\Objective.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 
