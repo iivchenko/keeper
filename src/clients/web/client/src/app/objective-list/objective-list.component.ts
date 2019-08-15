@@ -1,19 +1,20 @@
-import { Component } from "@angular/core"
-import { ObjectiveItem } from '../objective-item/objective-item.component';
+import { Component, OnInit } from "@angular/core"
+import { ObjectiveListItem } from '../objective-list-item/objective-list-item.component';
+import { ObjectiveService} from '../objective.service'
 
 @Component({
     selector: 'objective-list',
     templateUrl: './objective-list.component.html'
 })
 
-export class ObjectiveList {
-    public objective1:ObjectiveItem = {
-        name: 'test1',
-        description: 'description1'
+export class ObjectiveList implements OnInit {
+    
+    private objectives : any
+
+    constructor(private objectiveService : ObjectiveService) {
     }
 
-    public objective2:ObjectiveItem = {
-        name: 'test2',
-        description: 'description2'
+    ngOnInit(){
+        this.objectives = this.objectiveService.getObjectives();
     }
 }

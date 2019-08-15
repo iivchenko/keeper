@@ -1,4 +1,6 @@
-<div>
-    <objective-item></objective-item>
-    <objective-item></objective-item>
+<div *ngFor="let objective of objectives">
+    <objective-list-item
+        [name]="objective.name" 
+        [description]="objective.description" >
+    </objective-list-item>
 </div>
