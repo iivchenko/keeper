@@ -5,7 +5,8 @@ var target = Argument("target", "Build");
 Task("Build")
     .Does(() =>
 {
-	DockerComposeBuild("objective.api");
+	var settings = new DockerComposeBuildSettings { ProjectDirectory = "C:\\Users\\iivch\\Space\\Sources\\web\\keeper\\keeper\\src"} ;
+	DockerComposeBuild(settings, "objective.api");
 });
 
 Task("Run")

@@ -7,19 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{14
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objective", "Objective", "{B5F0C73A-030D-4C96-8338-0F1986D82692}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objective.Api", "src\services\Objective\Objective.Api\Objective.Api.csproj", "{96386524-93CF-4060-AB03-E0609215A2FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objective.Api", "services\Objective\Objective.Api\Objective.Api.csproj", "{96386524-93CF-4060-AB03-E0609215A2FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objective.Core.Application.Commands", "src\services\Objective\Objective.Core.Application.Commands\Objective.Core.Application.Commands.csproj", "{1C4F19C6-F0A9-4A87-8936-B56925B051DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objective.Core.Application.Commands", "services\Objective\Objective.Core.Application.Commands\Objective.Core.Application.Commands.csproj", "{1C4F19C6-F0A9-4A87-8936-B56925B051DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objective.Core.Application.Queries", "src\services\Objective\Objective.Core.Application.Queries\Objective.Core.Application.Queries.csproj", "{001B9921-4603-48E5-9D3E-D2A48FB18448}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objective.Core.Application.Queries", "services\Objective\Objective.Core.Application.Queries\Objective.Core.Application.Queries.csproj", "{001B9921-4603-48E5-9D3E-D2A48FB18448}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objective.Core.Domain", "src\services\Objective\Objective.Core.Domain\Objective.Core.Domain.csproj", "{2449FA8A-6631-417A-8B9E-B8C74F9D38D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objective.Core.Domain", "services\Objective\Objective.Core.Domain\Objective.Core.Domain.csproj", "{2449FA8A-6631-417A-8B9E-B8C74F9D38D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objective.Infrastructure.Persistence", "src\services\Objective\Objective.Infrastructure.Persistence\Objective.Infrastructure.Persistence.csproj", "{7A0D85C8-F807-42E5-97E3-6D79D33A8070}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objective.Infrastructure.Persistence", "services\Objective\Objective.Infrastructure.Persistence\Objective.Infrastructure.Persistence.csproj", "{7A0D85C8-F807-42E5-97E3-6D79D33A8070}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{ED5A7BCC-9725-49A1-A4FF-C4D72D21E921}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Objective.Core.Application.Queries.Sql", "src\services\Objective\Objective.Core.Application.Queries.Sql\Objective.Core.Application.Queries.Sql.csproj", "{8A1E5D3D-92C4-453E-99AB-41DF9A7217D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Objective.Core.Application.Queries.Sql", "services\Objective\Objective.Core.Application.Queries.Sql\Objective.Core.Application.Queries.Sql.csproj", "{8A1E5D3D-92C4-453E-99AB-41DF9A7217D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
