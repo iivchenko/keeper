@@ -5,4 +5,4 @@ services:
     image: ${DOCKER_REGISTRY-}objectiveapi
     build:
       context: .
-      dockerfile: src/services/Objective/Objective.Api/Dockerfile
+      dockerfile: services/Objective/Objective.Api/Dockerfile

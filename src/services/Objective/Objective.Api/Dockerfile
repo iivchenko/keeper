@@ -4,12 +4,12 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY ["src/services/Objective/Objective.Api/Objective.Api.csproj", "src/services/Objective/Objective.Api/"]
-COPY ["src/services/Objective/Objective.Core.Application.Commands/Objective.Core.Application.Commands.csproj", "src/services/Objective/Objective.Core.Application.Commands/"]
-COPY ["src/services/Objective/Objective.Core.Domain/Objective.Core.Domain.csproj", "src/services/Objective/Objective.Core.Domain/"]
-RUN dotnet restore "src/services/Objective/Objective.Api/Objective.Api.csproj"
+COPY ["services/Objective/Objective.Api/Objective.Api.csproj", "services/Objective/Objective.Api/"]
+COPY ["services/Objective/Objective.Core.Application.Commands/Objective.Core.Application.Commands.csproj", "services/Objective/Objective.Core.Application.Commands/"]
+COPY ["services/Objective/Objective.Core.Domain/Objective.Core.Domain.csproj", "services/Objective/Objective.Core.Domain/"]
+RUN dotnet restore "services/Objective/Objective.Api/Objective.Api.csproj"
 COPY . .
-WORKDIR "/src/src/services/Objective/Objective.Api"
+WORKDIR "/src/services/Objective/Objective.Api"
 RUN dotnet build "Objective.Api.csproj" -c Release -o /app
 
 FROM build AS publish

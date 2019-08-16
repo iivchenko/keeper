@@ -2,11 +2,15 @@
 #tool nuget:?package=NUnit.ConsoleRunner&version=3.10.0
 var target = Argument("target", "Build");
 
+Setup(context =>
+{
+    context.Environment.WorkingDirectory = context.Environment.WorkingDirectory + "\\src";
+});
+
 Task("Build")
     .Does(() =>
 {
-	var settings = new DockerComposeBuildSettings { ProjectDirectory = "C:\\Users\\iivch\\Space\\Sources\\web\\keeper\\keeper\\src"} ;
-	DockerComposeBuild(settings, "objective.api");
+	DockerComposeBuild("objective.api");
 });
 
 Task("Run")
