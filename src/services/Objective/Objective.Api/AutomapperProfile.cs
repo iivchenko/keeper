@@ -2,6 +2,7 @@
 using Objective.Api.Objectives;
 using Objective.Core.Application.Commands.Objectives.AddObjective;
 using Objective.Core.Application.Queries.Objectives.GetObjective;
+using Objective.Core.Application.Queries.Objectives.GetObjectives;
 
 namespace Objective.Api
 {
@@ -16,6 +17,7 @@ namespace Objective.Api
 
             // Commands\Queries to Model
             CreateMap<GetObjectiveQueryResult, ObjectiveModel>();
+            CreateMap<GetObjectivesQueryItem, ObjectiveModel>();
         }
     }
 }

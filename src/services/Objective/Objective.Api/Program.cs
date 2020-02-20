@@ -18,7 +18,6 @@ namespace Objective.Api
                 context.Database.EnsureCreated();
             }
 #endif
-
             host.Run();
         }
 

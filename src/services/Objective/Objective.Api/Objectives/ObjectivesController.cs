@@ -6,10 +6,11 @@ using Objective.Core.Application.Commands.Objectives.AddObjective;
 using System.Threading.Tasks;
 using AutoMapper;
 using Objective.Core.Application.Queries.Objectives.GetObjective;
+using Objective.Core.Application.Queries.Objectives.GetObjectives;
 
 namespace Objective.Api.Objectives
 {
-    [Route("api/[controller]")]
+    [Route("api/objectives")]
     [ApiController]
     public class ObjectivesController : ControllerBase
     {
@@ -25,9 +26,11 @@ namespace Objective.Api.Objectives
         }
 
         [HttpGet]
-        public IEnumerable<ObjectiveModel> GetObjectives()
+        public async Task<IEnumerable<ObjectiveModel>> GetObjectives([FromQuery] int skip, [FromQuery] int take)
         {
-            throw new NotImplementedException();
+            var objectives = await _mediator.Send(new GetObjectivesQuery { Skip = skip, Take = take });
+
+            return _mapper.Map<IEnumerable<GetObjectivesQueryItem>, IEnumerable<ObjectiveModel>>(objectives.Objectives);
         }
 
         [HttpGet("{id}")]
