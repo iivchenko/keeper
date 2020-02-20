@@ -11,7 +11,8 @@ namespace Objective.Infrastructure.Persistence.Objectives
                 .ToTable("objectives");
 
             builder
-                .HasKey(x => x.Id);
+                .HasKey(x => x.Id)
+                .ForSqlServerIsClustered(false);
 
             builder
                 .Property(x => x.Name)
@@ -22,6 +23,11 @@ namespace Objective.Infrastructure.Persistence.Objectives
 
             builder
                 .Property(x => x.CreatedDate);
+
+            builder
+                .HasIndex(x => x.CreatedDate)
+                .IsUnique()
+                .ForSqlServerIsClustered(true);
         }
     }
 }
