@@ -11,13 +11,13 @@ namespace Objective.Api
         {
             var host = CreateWebHostBuilder(args).Build();
 
-#if DEBUG
+            // TODO: remove the hack after release to PRD
             using (var serviceScope = host.Services.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<ObjectiveContext>();
                 context.Database.EnsureCreated();
             }
-#endif
+
             host.Run();
         }
 
