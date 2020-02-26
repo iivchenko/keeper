@@ -300,6 +300,7 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 tools/**
+build/tools/**
 # !tools/packages.config
 
 # Tabs Studio
@@ -328,3 +329,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# VS Code
+.ionide/
