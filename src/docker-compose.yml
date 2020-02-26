@@ -6,3 +6,9 @@ services:
     build:
       context: .
       dockerfile: services/Objective/Objective.Api/Dockerfile
+
+  webspa.server:
+    image: ${DOCKER_REGISTRY-}webspaserver
+    build:
+      context: .
+      dockerfile: clients/WebSpa/WebSpa.Server/Dockerfile

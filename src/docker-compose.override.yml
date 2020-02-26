@@ -15,6 +15,12 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionString=Server=data.sql;Database=objectives;User Id=sa;Password=Pass@word
     ports:
-      - "80"
+      - "32001:80"
     depends_on:
       - data.sql
+
+  webspa.server:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "32002:80"
