@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
 
 import { ObjectiveList} from './objectives/objective-list/objective-list.component'
 import { ObjectiveListItem} from './objectives/objective-list-item/objective-list-item.component'
@@ -19,12 +18,9 @@ import { ObjectiveService} from './objectives/objective.service'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    RouterModule.forRoot([
-      { path: 'objectives', component: ObjectiveList }
-    ])
+    HttpClientModule
   ],
-  providers: [ObjectiveService],
+  providers: [ObjectiveService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
