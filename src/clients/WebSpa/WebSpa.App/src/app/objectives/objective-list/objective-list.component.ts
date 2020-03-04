@@ -14,6 +14,6 @@ export class ObjectiveList implements OnInit {
   }
 
   ngOnInit(){
-    this.objectives = this.objectiveService.getObjectives();
+    this.objectiveService.getObjectives().subscribe(objectives => this.objectives = objectives);
   }
 }

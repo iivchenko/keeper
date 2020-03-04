@@ -1,31 +1,29 @@
-import { Injectable, Inject } from '@angular/core'
+import { Injectable, Inject, InjectionToken } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
+import { Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
+
+export const ObjectivesApiUrl = new InjectionToken<string>('ObjectivesApiUrl');
 
 @Injectable()
 export class ObjectiveService {
 
-  private url: string = '';
+  private url: string;
   private http: HttpClient;
 
-  private objectives: Objective[];
-
-  constructor(http: HttpClient) {
-    this.url = "";
+  constructor(http: HttpClient, @Inject(ObjectivesApiUrl) apiUrl: string) {
+    this.url = apiUrl;
     this.http = http;
   }
 
-  getObjectives(): Objective[] {
-    //let url = this.url + 'api/objectives?skip=0&take=1000'; // TODO: Make a proper paging
+  getObjectives(): Observable<Objective[]> {
 
-    //this.http.get(url).subscribe((data: Objective[]) => this.objectives = data);
-    let o = new Objective();
-    o.description = "test";
-    o.name = "hello";
+    let url = this.url + 'api/objectives?skip=0&take=1000'; // TODO: Make a proper paging
 
-    this.objectives = [o];
-
-    return this.objectives;
+    return this.http.get<Objective[]>(url);
   }
+
+  
 }
 
 export class Objective {

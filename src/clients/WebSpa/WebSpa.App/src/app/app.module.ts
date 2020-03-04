@@ -6,9 +6,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { environment } from './../environments/environment'
 import { ObjectiveList} from './objectives/objective-list/objective-list.component'
 import { ObjectiveListItem} from './objectives/objective-list-item/objective-list-item.component'
-import { ObjectiveService} from './objectives/objective.service'
+import { ObjectiveService, ObjectivesApiUrl} from './objectives/objective.service'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,13 @@ import { ObjectiveService} from './objectives/objective.service'
     HttpClientModule,
     NgbModule
   ],
-  providers: [ObjectiveService, HttpClient],
+  providers: [
+    {
+      provide: ObjectivesApiUrl,
+      useValue: environment.webSpaServerUrl
+    },
+    ObjectiveService, 
+    HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
