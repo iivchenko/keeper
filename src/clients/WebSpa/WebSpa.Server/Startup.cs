@@ -19,6 +19,15 @@ namespace WebSpa.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                builder => builder.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            });
+
             services.AddOcelot();
         }
 
@@ -33,6 +42,7 @@ namespace WebSpa.Server
                 app.UseHsts();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseOcelot().Wait();
         }
     }
